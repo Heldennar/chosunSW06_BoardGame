@@ -5,15 +5,15 @@
 class BoardGame
 {
 private:
-	int player1[4];
-	int board[21];
-	int dice[4];
-	int b_len;
+	int player1[4]; //플레이어 말
+	int board[21]; //보드
+	int dice[4]; //윷
+	int b_len; //보드배열 길이
 public:
-	BoardGame();
-	void roll();
-	void move(int player);
-	int moveNum[32];
+	BoardGame(); //리셋용
+	void roll(); //윷 던지기
+	void move(int player); //이동
+	int* moveNum; //윷 저장
 };
 BoardGame::BoardGame()
 {
@@ -25,6 +25,7 @@ BoardGame::BoardGame()
 void BoardGame::roll()
 {
 	int i = 0;
+	moveNum = (int*)malloc(sizeof(int) * (i + 1));
 	while (1) {
 		int roll = 0;
 		for (int i = 0; i < 4; i++) { srand(time(NULL)); dice[i] = rand() % 2; roll += dice[i]; }
@@ -53,8 +54,11 @@ void BoardGame::roll()
 void BoardGame::move(int player)
 {
 	int num;
+	printf("이동 가능한 윷");
+	for (int i = 0; i < sizeof(moveNum); i++)
+		printf("%d / ", moveNum[i]);
 	printf("이동 : ");
-	for(int i = 0; i< )
+	//for(int i = 0; i< )
 	scanf("%d", &num);
 	player1[player] += moveNum[num];
 }
